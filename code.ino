@@ -83,6 +83,16 @@ String detectColor() {
 }
 
 // Move forward
+void moveBackward() {
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
+    analogWrite(ENA, 200);
+    analogWrite(ENB, 200);
+}
+
+// Move forward
 void moveForward() {
     digitalWrite(IN1, HIGH);
     digitalWrite(IN2, LOW);
@@ -108,30 +118,8 @@ void dropFlag() {
 }
 
 void loop() {
-    int distance = getDistance();
-    Serial.print("Distance: ");
-    Serial.println(distance);
-
-    if (distance < 10) { // Wall detected
-        stopMotors();
-        delay(500);
-        // Add turning logic here
-    } else {
-        moveForward();
-    }
-
-    // Color detection
-    String detectedColor = detectColor();
-    Serial.print("Detected Color: ");
-    Serial.println(detectedColor);
-
-    if (detectedColor == "Red") {
-        // Handle red logic
-    } else if (detectedColor == "Green") {
-        // Handle green logic
-    } else if (detectedColor == "Blue") {
-        // Handle blue logic
-    }
-
-    delay(100);
+    moveBackward();
+    delay(1000);
+    moveForward();
+    delay(1000);
 }
