@@ -2,6 +2,8 @@
 const int SERVOPIN = 7;
 Servo servo;
 
+const int TURNFACTOR = 8;
+
 // Echo Sensor
 const int TRIGPIN = A1;
 const int ECHOPIN = A2;
@@ -59,6 +61,7 @@ void setup()
 
     // set sensor output as input
     pinMode(SENSOROUT, INPUT);
+    delay(2000);
 }
 
 void loop() {
@@ -170,7 +173,7 @@ void moveRight() {
 }
 
 void turnRight(){
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < TURNFACTOR; i++) {
         moveRight();
         delay(120);
         stopMotors();
@@ -181,7 +184,7 @@ void turnRight(){
 }
 
 void turnLeft(){
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < TURNFACTOR; i++) {
         moveLeft();
         delay(120);
         stopMotors();
